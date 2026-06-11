@@ -233,7 +233,7 @@ footer{padding:40px 0 80px;font-size:12.5px;color:var(--sub);font-family:var(--m
       <span class="sim-tally" id="tally">아직 추첨하지 않았습니다.</span>
     </div>
     <div class="duel" id="duel" aria-live="polite"></div>
-    <p class="sim-note">횟수가 쌓일수록 평균 일치도는 <b>49.1%</b>(임의 쌍 기준, 평균 3.9개 영역 공동 표기)에 수렴한다. 한쪽을 8/8 기업으로 고정하면 <b>69.0%</b>(평균 5.5개)에 수렴하며, 프로필 완전 일치도 33.2% 빈도로 나타난다. <label style="font-weight:600;color:var(--ink)"><input type="checkbox" id="fixFull"> 한쪽을 8/8 기업으로 고정</label></p>
+    <p class="sim-note">페이지 로드 시 "8/8 기업 고정" 기준으로 100회가 자동 추첨되어 위 누적에 반영되어 있다. 횟수가 쌓일수록 평균 일치도는 <b>69.0%</b>(일방 8/8 고정, 평균 5.5개 영역)에, 고정 해제 시 <b>49.1%</b>(임의 쌍, 평균 3.9개)에 수렴하며, 프로필 완전 일치는 각각 33.2%·12.4% 빈도로 나타난다. <label style="font-weight:600;color:var(--ink)"><input type="checkbox" id="fixFull"> 한쪽을 8/8 기업으로 고정</label></p>
   </div>
 </section>
 
@@ -348,6 +348,9 @@ document.getElementById('drawBtn').onclick = ()=>drawOnce(true);
 document.getElementById('draw100').onclick = ()=>{for(let i=0;i<99;i++)drawOnce(false);drawOnce(true);};
 document.getElementById('fixFull').onchange = ()=>{draws=0;matches=0;sumPct=0;
   document.getElementById('tally').textContent='기준 변경 — 누적을 초기화했습니다.';};
+document.getElementById('fixFull').checked = true;
+for(let i=0;i<99;i++)drawOnce(false);
+drawOnce(true);
 
 /* 분석7: 전수 테이블 */
 const tbody=document.getElementById('tbody'), qc=document.getElementById('qCount');
