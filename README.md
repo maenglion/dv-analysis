@@ -1,0 +1,1 @@
+This repository contains a reproducible analysis of Data Voucher supplier service-area labels. The purpose is not to prove that two companies are different, but to show that matching service-area labels alone do not prove corporate identity.
