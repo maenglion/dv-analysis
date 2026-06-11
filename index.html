@@ -7,13 +7,14 @@
 <title>데이터바우처 가공 공급기업 수행영역 전수 분석</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{
   --paper:#FCFCFA; --ink:#16191D; --sub:#5A5F66; --rule:#D8D6CF;
   --blue:#1D4F8F; --blue-soft:#E8EEF7; --stamp:#B5342A; --hl:#FFF1B8;
-  --mono:'IBM Plex Mono', ui-monospace, monospace;
-  --serif:'Noto Serif KR', 'Apple SD Gothic Neo', serif;
-  --sans:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',-apple-system,sans-serif;
+  --mono:'IBM Plex Mono','Pretendard Variable','Pretendard',ui-monospace,monospace;
+  --serif:'Noto Serif KR','Pretendard Variable','Apple SD Gothic Neo',serif;
+  --sans:'Pretendard Variable','Pretendard','Apple SD Gothic Neo','Malgun Gothic',-apple-system,sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -179,6 +180,8 @@ footer{padding:40px 0 80px;font-size:12.5px;color:var(--sub);font-family:var(--m
   <p class="thesis">두 기업의 가공 수행영역 표기가 일치한다는 사실은, 두 기업이 동일하다는 주장의 근거가 되는가. 이 질문은 의견이 아니라 모집단 전수로 답할 수 있다.</p>
   <p>한국데이터산업진흥원 데이터바우처 포털에 등록된 가공 공급기업 전수(634개사)를 대상으로, 포털의 표준 가공영역 분류 8개 항목 — 가공, 전처리, 품질, 코딩, 시각화, 정보추출/조합, 태깅/라벨링, 분석 — 의 표기 여부를 기업별 8차원 프로필로 수집했다. 표본 추출이나 선별 없이 전체 145페이지를 그대로 수집했으므로 표집 편향이 존재하지 않으며, 분류 기준은 분석자가 아닌 진흥원이 정의한 것이다.</p>
   <p>아래의 모든 수치는 본 페이지에 그대로 공개된 원자료(분석 7)에서 누구나 재계산할 수 있다.</p>
+  <p><b>분류 기준에 관한 주석.</b> 현행 포털은 기업별로 8개 배지를 표시하나, 이 중 "가공"은 가공서비스 전체를 가리키는 상위 카테고리 라벨이며, 등록 신청 양식의 실제 보기는 7개(전처리·품질·코딩·시각화·정보추출또는조합·태깅또는라벨링·분석)의 필수입력·중복선택 체크박스다. 본 분석은 8개 기준과 7개 기준을 모두 산출하였으며, 두 기준에서 전 영역 표기 기업은 동일한 211개사로 결과가 불변이다(분석 4).</p>
+  <p><b>시점 범위에 관한 주석.</b> 본 모집단은 2025년 등록부 재정비를 거친 2026년 현행 명부다. 본 분석의 논증 대상은 특정 연도의 명부가 아니라 등록 양식의 구조 — 동일한 7개 보기의 강제 선택 — 이며, 재정비 이후 축소된 현행 모집단에서조차 전 영역 선택이 최빈값(33.3%)이라는 점에서 본 추정은 보수적이다.</p>
 </section>
 
 <section id="s2">
@@ -208,6 +211,9 @@ footer{padding:40px 0 80px;font-size:12.5px;color:var(--sub);font-family:var(--m
     <tbody>
       <tr><td>전체 등록 기업</td><td class="num">634</td><td class="num">211</td><td class="num">33.3%</td><td class="num">33.2%</td></tr>
       <tr class="hit"><td>가공기업 한정 (표기 3개 이상)</td><td class="num">542</td><td class="num">211</td><td class="num">38.9%</td><td class="num">38.8%</td></tr>
+      <tr><td>구 양식 기준 · 7개 보기 전부 선택 (전체)</td><td class="num">634</td><td class="num">211</td><td class="num">33.3%</td><td class="num">33.2%</td></tr>
+      <tr><td>구 양식 기준 · 가공서비스 신청 기업 한정</td><td class="num">575</td><td class="num">211</td><td class="num">36.7%</td><td class="num">36.6%</td></tr>
+      <tr class="hit"><td>구 양식 기준 · 실질 가공기업 한정 (3개 이상)</td><td class="num">500</td><td class="num">211</td><td class="num">42.2%</td><td class="num">42.1%</td></tr>
       <tr><td>무작위 두 기업의 프로필 완전 일치(전 패턴)</td><td class="num">634</td><td class="num">—</td><td class="num">—</td><td class="num">12.4%</td></tr>
     </tbody>
   </table>
