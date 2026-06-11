@@ -216,7 +216,7 @@ footer{padding:40px 0 80px;font-size:12.5px;color:var(--sub);font-family:var(--m
 
 <section id="s5">
   <div class="sec-head"><span class="sec-no">분석 5</span><h2>직접 확인 — 무작위 대조 시뮬레이터</h2></div>
-  <p class="thesis">통계를 믿는 대신, 직접 뽑아 보라. 아래 버튼은 634개사 중 두 곳을 무작위로 추첨해 8차원 프로필을 대조한다.</p>
+  <p class="thesis">통계를 믿는 대신, 직접 뽑아 보라. 아래 버튼은 등록 기업 중 두 곳을 무작위로 추첨해, 8개 가공영역 중 몇 개를 <em>양사가 공동으로 표기</em>하는지 일치도(%)로 보여준다.</p>
   <div class="sim no-print">
     <div class="sim-controls">
       <button id="drawBtn">두 기업 무작위 추첨</button>
@@ -224,7 +224,7 @@ footer{padding:40px 0 80px;font-size:12.5px;color:var(--sub);font-family:var(--m
       <span class="sim-tally" id="tally">아직 추첨하지 않았습니다.</span>
     </div>
     <div class="duel" id="duel" aria-live="polite"></div>
-    <p class="sim-note">횟수가 쌓일수록 완전 일치 빈도는 이론값 12.4%(임의 쌍 기준)에 수렴한다. 한쪽을 8/8 기업으로 고정하면 33.2%에 수렴한다 — 아래 토글로 확인할 수 있다. <label style="font-weight:600;color:var(--ink)"><input type="checkbox" id="fixFull"> 한쪽을 8/8 기업으로 고정</label></p>
+    <p class="sim-note">횟수가 쌓일수록 평균 일치도는 <b>49.1%</b>(임의 쌍 기준, 평균 3.9개 영역 공동 표기)에 수렴한다. 한쪽을 8/8 기업으로 고정하면 <b>69.0%</b>(평균 5.5개)에 수렴하며, 프로필 완전 일치도 33.2% 빈도로 나타난다. <label style="font-weight:600;color:var(--ink)"><input type="checkbox" id="fixFull"> 한쪽을 8/8 기업으로 고정</label></p>
   </div>
 </section>
 
@@ -292,7 +292,7 @@ document.getElementById('histX').innerHTML = dist.map((_,k)=>`<span>${k}</span>`
 
 /* 분석5: 시뮬레이터 */
 const fullIdx = DATA.map((r,i)=>r[2]===8?i:-1).filter(i=>i>=0);
-let draws=0, matches=0;
+let draws=0, matches=0, sumPct=0;
 const dots = p => `<div class="dots">${[...p].map(b=>`<i class="${b==='1'?'on':''}"></i>`).join('')}</div>
   <div class="dot-legend">●=표기 ○=미표기 (가공→분석 순)</div>`;
 function drawOnce(render){
@@ -302,20 +302,23 @@ function drawOnce(render){
     do{ b = Math.floor(Math.random()*N); }while(b===a); }
   else { a = Math.floor(Math.random()*N);
     do{ b = Math.floor(Math.random()*N); }while(b===a); }
+  let shared=0;
+  for(let i=0;i<8;i++) if(DATA[a][1][i]==='1' && DATA[b][1][i]==='1') shared++;
+  const pct = shared/8*100;
   const hit = DATA[a][1]===DATA[b][1];
-  draws++; if(hit) matches++;
+  draws++; sumPct+=pct; if(hit) matches++;
   if(render){
     document.getElementById('duel').innerHTML =
       `<div class="firm"><h4>${DATA[a][0]}</h4>${dots(DATA[a][1])}</div>
-       <div class="verdict ${hit?'match':''}">${hit?'완전\u00a0일치':'불일치'}</div>
+       <div class="verdict ${pct>=75?'match':''}">일치도<br><span style="font-size:1.6em" class="num">${pct.toFixed(0)}%</span><br><span style="font-size:.6em;font-weight:500">${shared}/8 영역 공동 표기</span>${hit?'<br><span style="font-size:.55em;border:1.5px solid var(--stamp);color:var(--stamp);padding:1px 6px;letter-spacing:.15em">프로필 완전 일치</span>':''}</div>
        <div class="firm"><h4>${DATA[b][0]}</h4>${dots(DATA[b][1])}</div>`;
   }
   document.getElementById('tally').innerHTML =
-    `누적 <b>${draws}</b>회 중 완전 일치 <b>${matches}</b>회 — 경험적 일치율 <b>${(matches/draws*100).toFixed(1)}%</b>`;
+    `누적 <b>${draws}</b>회 · 평균 일치도 <b>${(sumPct/draws).toFixed(1)}%</b> · 프로필 완전 일치 <b>${matches}</b>회(${(matches/draws*100).toFixed(1)}%)`;
 }
 document.getElementById('drawBtn').onclick = ()=>drawOnce(true);
 document.getElementById('draw100').onclick = ()=>{for(let i=0;i<99;i++)drawOnce(false);drawOnce(true);};
-document.getElementById('fixFull').onchange = ()=>{draws=0;matches=0;
+document.getElementById('fixFull').onchange = ()=>{draws=0;matches=0;sumPct=0;
   document.getElementById('tally').textContent='기준 변경 — 누적을 초기화했습니다.';};
 
 /* 분석7: 전수 테이블 */
