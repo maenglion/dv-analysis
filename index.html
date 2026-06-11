@@ -147,10 +147,13 @@ footer{padding:40px 0 80px;font-size:12.5px;color:var(--sub);font-family:var(--m
 }
 @media print{
   .sim,.no-print{display:none}
+  .web-only{display:none}
+  .print-only{display:revert}
   section{break-inside:avoid;padding:28px 0}
   .tbl-scroll{max-height:none;overflow:visible}
   body{font-size:12px}
 }
+.print-only{display:none}
 </style>
 </head>
 <body>
@@ -222,7 +225,7 @@ footer{padding:40px 0 80px;font-size:12.5px;color:var(--sub);font-family:var(--m
 
 <section id="s5">
   <div class="sec-head"><span class="sec-no">분석 5</span><h2>직접 확인 — 무작위 대조 시뮬레이터</h2></div>
-  <p class="thesis">통계를 믿는 대신, 직접 뽑아 보라. 아래 버튼은 등록 기업 중 두 곳을 무작위로 추첨해, 8개 가공영역 중 몇 개를 <em>양사가 공동으로 표기</em>하는지 일치도(%)로 보여준다.</p>
+  <p class="thesis"><span class="web-only">통계를 믿는 대신, 직접 뽑아 보라. 아래 버튼은 등록 기업 중 두 곳을 무작위로 추첨해, 8개 가공영역 중 몇 개를 <em>양사가 공동으로 표기</em>하는지 일치도(%)로 보여준다.</span><span class="print-only">무작위 대조 시뮬레이션을 통해 위 분포를 재확인할 수 있다. 본 페이지(웹)에서 등록 기업 중 두 곳을 무작위로 추첨하면, 평균 일치도는 49.1%(임의 쌍), 69.0%(일방 8/8 고정)에 수렴한다.</span></p>
   <div class="sim no-print">
     <div class="sim-controls">
       <button id="drawBtn">두 기업 무작위 추첨</button>
@@ -240,7 +243,7 @@ footer{padding:40px 0 80px;font-size:12.5px;color:var(--sub);font-family:var(--m
   <div class="pair">
     <div class="card"><span class="tag">프로필 11111111 · 8/8</span><h4>성균관대학교산학협력단</h4></div>
     <div class="card"><span class="tag">프로필 11111111 · 8/8</span><h4>(주)엘지유플러스</h4></div>
-    <div class="pair-verdict">동 기준에 따르면 위 두 기관은 "동일한 회사"가 된다 — 나머지 209개사와 함께.</div>
+    <div class="pair-verdict"><span class="web-only">동 기준에 따르면 위 두 기관은 "동일한 회사"가 된다 — 나머지 209개사와 함께.</span><span class="print-only">수행영역 프로필의 일치만으로 동일성을 추정한다면, 실질이 전혀 다른 위 두 기관 또한 — 나머지 209개사와 함께 — 동일하게 분류되는 결과가 발생한다.</span></div>
   </div>
   <p>반대 방향의 반례도 등록부 안에 있다. 나이스지니데이타와 나이스평가정보는 실제로 같은 기업집단에 속하고 8차원 프로필도 완전히 동일하지만, 진흥원 등록 체계는 이 둘을 별개 기업으로 취급한다. 즉 공식 체계 안에서조차 수행영역 프로필은 기업의 동일성을 판정하는 기준으로 사용되지 않는다.</p>
   <p>수행영역 분류는 기업의 지문이 아니라 업계의 공통 어휘다. 기업 간 식별은 분류 표기가 아니라 그 아래 층위 — 보유 솔루션, 품질확보 전략, 수행 실적, 특허 등 진흥원이 공급기업 심사에 실제로 사용하는 세부 역량 항목 — 에서 이루어진다.</p>
@@ -259,9 +262,28 @@ footer{padding:40px 0 80px;font-size:12.5px;color:var(--sub);font-family:var(--m
   </div>
 </section>
 
-<section id="s8" style="border-bottom:none">
-  <div class="sec-head"><span class="sec-no">결론</span><h2>증거가치의 판단</h2></div>
-  <p class="conclusion">수행영역의 일치는 두 기업이 동일할 때도, 무관할 때도 거의 동일한 빈도로 관찰되는 사건이다. 따라서 이 일치는 동일성 판단에 대한 <em>증거가치를 갖지 못한다</em>. 본 분석은 두 기업이 다르다는 것을 증명하지 않는다 — 일치 그 자체가 아무것도 증명하지 못한다는 것을 증명한다. 동일성을 주장하는 측은 업계 공통 어휘의 일치가 아닌, 다른 근거를 제시하여야 한다.</p>
+<section id="s8">
+  <div class="sec-head"><span class="sec-no">결론</span><h2>측정 결과의 요지</h2></div>
+  <p class="conclusion">수행영역의 일치는 두 기업이 동일할 때도, 무관할 때도 거의 동일한 빈도로 관찰되는 사건이다. 따라서 이 일치는 두 기업을 구별하는 <em>식별력을 갖지 않는다</em> — 이는 견해가 아니라 본 자료가 측정한 결과다. 본 분석은 두 기업이 상이함을 증명하지 않는다. 수행영역의 일치가 동일성 판단의 독자적 근거가 될 수 없음을 보일 뿐이며, 동일성의 입증은 업계 공통 분류의 일치가 아닌 다른 근거에 의하여야 한다.</p>
+</section>
+
+<section id="appendix" style="border-bottom:none">
+  <div class="sec-head"><span class="sec-no">부록</span><h2>분석 절차의 명세</h2></div>
+  <table>
+    <tbody>
+      <tr><td style="width:34%"><b>자료 출처</b></td><td>한국데이터산업진흥원 데이터바우처 포털 공급기업 검색 (kdata.or.kr/datavoucher)</td></tr>
+      <tr><td><b>수집 일시 · 범위</b></td><td><span class="num">2026. 6. 11.</span> · 검색결과 전체 <span class="num">145</span>페이지 전수 (표본 추출·선별 없음)</td></tr>
+      <tr><td><b>원자료 규모</b></td><td>기업 <span class="num">634</span>행 × 수행영역 <span class="num">8</span>열 — 본 페이지 분석 7에 전량 공개</td></tr>
+      <tr><td><b>수집 도구</b></td><td>Python (requests, BeautifulSoup) — 수집 코드는 동일 저장소 crawler.ipynb로 공개</td></tr>
+      <tr><td><b>기업명 처리</b></td><td>포털 게재 원문 그대로 수록. 중복 검증 시에만 법인격 표기((주)·주식회사 등)와 공백을 제거 후 대조 — 중복 게재 <span class="num">0</span>건 확인</td></tr>
+      <tr><td><b>계열사 병합</b></td><td>병합하지 않음 — 진흥원 등록 법인 단위 기준 (예: 나이스 계열 4개 법인은 등록부와 동일하게 각각 별개 기업으로 집계)</td></tr>
+      <tr><td><b>수행영역 순서</b></td><td>가공 · 전처리 · 품질 · 코딩 · 시각화 · 정보추출또는조합 · 태깅또는라벨링 · 분석 (현행 포털 8개 배지 기준. 구 양식의 신청 보기는 "가공"을 제외한 7개이며, 양 기준의 전 영역 표기 기업은 동일한 <span class="num">211</span>개사)</td></tr>
+      <tr><td><b>조건부 일치 확률</b></td><td><span class="num">P = (F−1)/(N−1)</span> — F: 전 영역 표기 기업 수, N: 모집단. 예: (211−1)/(634−1) = <span class="num">33.2%</span></td></tr>
+      <tr><td><b>프로필 충돌 확률</b></td><td><span class="num">P = Σ<sub>p</sub> C(n<sub>p</sub>,2) / C(N,2)</span> — n<sub>p</sub>: 프로필 p 보유 기업 수 = <span class="num">12.4%</span></td></tr>
+      <tr><td><b>평균 공동 표기 기대값</b></td><td><span class="num">E = Σ<sub>i</sub> C(c<sub>i</sub>,2) / C(N,2)</span> = 3.93개 영역 (<span class="num">49.1%</span>) — c<sub>i</sub>: 영역 i 표기 기업 수</td></tr>
+      <tr><td><b>원자료 무결성</b></td><td>datavoucher_total_analysis.csv (<span class="num">36,116</span> bytes)<br><span class="num" style="font-size:11.5px;word-break:break-all">SHA-256: 8d836610c7785d3296b36fe2c01f98c59b967f81acac0c224b198fc28ce0414e</span></td></tr>
+    </tbody>
+  </table>
 </section>
 
 </main>
